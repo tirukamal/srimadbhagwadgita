@@ -1,0 +1,4 @@
+user:  'postgresuser1'
+password: 'postgrespassword'
+host: 'localhost'
+database: 'bhagvadgita'   

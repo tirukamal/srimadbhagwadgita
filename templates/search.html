@@ -1,0 +1,57 @@
+{% extends "layout.html" %}
+
+
+{% block content %}
+
+<div class="container">
+
+    {% from "base/form_helpers.html" import render_field %}
+    <form method=post>
+        <dl>
+            {{ render_field(form.dropdown, class='form-control') }}
+            {{ render_field(form.keyword, class='form-control') }}
+            
+        </dl>
+        <p><button type="search". class="btn btn-primary">Search</button>
+    </form>
+
+    <h3>Search Page</h3>
+    <hr>
+    <br>
+
+
+{% if dataframe %}
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Chapter_no/th>
+        <th scope="col">Verse_no</th>
+        <th scope="col">Shloka</th>
+        <th scope="col">English_translation</th>
+        <th scope="col">Explanation</th>
+      </tr>
+    </thead>
+    <tbody>
+        {% for row in dataframe %}
+      <tr>
+        <th>{{row['index']+1}}</th>
+        <td>{{row['chapter_no']}}</td>
+        <td>{{row['verse_no']}}</td>
+        
+        <td><a href="/{{row['bhagvadgita_id']}}">{{row['shloka']}}</a></td>
+        <td>{{row['english_translation']}}</td>
+        <td>{{row['explanation']}}</td>
+      </tr>
+        {% endfor %}
+    </tbody>
+  </table>
+  {% else %}
+  <br>
+  There is no shloka for your searching createria!
+{% endif %}
+
+
+</div>
+
+{% endblock %}
